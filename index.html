@@ -9,7 +9,7 @@
     .hidden { display: none !important; }
     html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
   </style>
-  <link rel="stylesheet" href="./style.css?v=8" />
+  <link rel="stylesheet" href="./style.css?v=9" />
 
   <!-- 3Dmol.js 3D 渲染引擎 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.1.0/3Dmol-min.js"></script>
@@ -28,10 +28,12 @@
         <div class="search-wrap" id="searchWrap">
           <span>🔍</span>
           <input type="text" id="searchInput" autocomplete="off" placeholder="搜索 (如 caffeine)..." />
-          <div class="search-suggestions hidden" id="searchSuggestions"></div>
         </div>
         <button class="menu-btn primary-pill" id="syncBtn">⚡ 轉 3D</button>
       </div>
+
+      <!-- 搜尋自動補全下拉選單（獨立置於外層避免手機版橫向捲動裁切） -->
+      <div class="search-suggestions hidden" id="searchSuggestions"></div>
 
       <!-- 頂部第二排：編輯動作島 -->
       <div class="floating-bar sub-menu">
@@ -138,8 +140,8 @@
 
     <!-- 右側：3D 分子視覺化視窗 -->
     <div class="viewer-pane" id="viewerPane">
-      <!-- 窄螢幕專用：返回 2D 畫布按鈕 -->
-      <button class="back-to-2d-btn" id="backTo2DBtn" title="返回 2D 編輯畫布">← 回到 2D</button>
+      <!-- 手機版專用：返回 2D 編輯按鈕 -->
+      <button class="back-to-2d-btn" id="backTo2DBtn" title="返回 2D 編輯畫布">← 返回 2D 編輯</button>
 
       <div class="viewer-controls">
         <select id="styleSelect">
@@ -167,6 +169,15 @@
     </div>
   </div>
 
-  <script src="./app.js?v=14"></script>
+  <!-- 深色質感置中通知彈窗 -->
+  <div class="custom-alert-overlay hidden" id="customAlertOverlay" role="dialog" aria-modal="true" aria-labelledby="customAlertMessage">
+    <div class="custom-alert-card warning" id="customAlertCard">
+      <div class="custom-alert-icon" id="customAlertIcon"></div>
+      <div class="custom-alert-message" id="customAlertMessage"></div>
+      <button type="button" class="custom-alert-btn" id="customAlertConfirmBtn">確定</button>
+    </div>
+  </div>
+
+  <script src="./app.js?v=15"></script>
 </body>
 </html>
